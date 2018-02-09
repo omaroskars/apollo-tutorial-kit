@@ -1,4 +1,4 @@
-
+import fetch from 'node-fetch';
 import Sequelize from 'sequelize';
 import casual from 'casual';
 import _ from 'lodash';
@@ -37,7 +37,17 @@ db.sync({ force: true }).then(() => {
   });
 });
 
+const FortuneCookie = {
+  getOne() {
+    return fetch('http://fortunecookieapi.herokuapp.com/v1/cookie')
+      .then(res => res.json())
+      .then(res => {
+        return res[0].fortune.message;
+      });
+  },
+};
+
 const Author = db.models.author;
 const Post = db.models.post;
 
-export { Author, Post };
+export { Author, Post, FortuneCookie };

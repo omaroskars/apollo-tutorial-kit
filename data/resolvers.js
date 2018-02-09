@@ -1,4 +1,4 @@
-import { Author, View, FortuneCookie } from './connectors';
+import { Author, View, FortuneCookie } from "./connectors";
 
 const resolvers = {
   Query: {
@@ -24,7 +24,7 @@ const resolvers = {
     views(post) {
       return View.findOne({ postId: post.id }).then(view => view.views);
     }
-  },
+  }
 };
 
 export default resolvers;
